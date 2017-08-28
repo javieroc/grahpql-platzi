@@ -1,31 +1,23 @@
 const { Model } = require('objection')
 const path = require('path')
 
-class Curso extends Model {
+class Profesor extends Model {
   static get tableName () {
-    return 'cursos'
+    return 'profesores'
   }
 
   static get relationMappings () {
     return {
-      profesor: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: path.join(__dirname, '/Profesor'),
-        join: {
-          from: 'cursos.profesor_id',
-          to: 'profesores.id'
-        }
-      },
-      comentarios: {
+      cursos: {
         relation: Model.HasManyRelation,
-        modelClass: path.join(__dirname, '/Comentario'),
+        modelClass: path.join(__dirname, '/Curso'),
         join: {
-          from: 'cursos.id',
-          to: 'comentarios.curso_id'
+          from: 'profesores.id',
+          to: 'cursos.profesor_id'
         }
       }
     }
   }
 }
 
-module.exports = Curso
+module.exports = Profesor
