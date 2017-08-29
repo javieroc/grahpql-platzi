@@ -2,7 +2,7 @@ module.exports = `
   type Profesor {
     id: ID!
     nombre: String!
-    nacionalidad: String
+    nacionalidad: String!
     genero: Genero
     cursos: [Curso]
   }
@@ -10,5 +10,11 @@ module.exports = `
   enum Genero {
     MASCULINO
     FEMENINO
+  }
+
+  input NuevoProfesor {
+    nombre: String!
+    genero: Genero
+    nacionalidad: String!
   }
 `
